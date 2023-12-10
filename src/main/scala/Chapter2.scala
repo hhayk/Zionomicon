@@ -374,16 +374,12 @@ object Chapter2_18 extends ZIOAppDefault {
 //Using the Console service and recursion, write a function that will repeatedly
 //read input from the console until the specified user-defined function
 //evaluates to true on the input.
-object Chapter2_19 extends ZIOAppDefault {
+object Chapter2_19 {
   def rec(cond: String => Boolean): ZIO[Console, IOException, String] = {
     Console.readLine.flatMap { str =>
       if (cond(str)) ZIO.succeed(str)
       else rec(cond)
     }
-  }
-
-  override def run: ZIO[Any with ZIOAppArgs with Scope, Any, Any] = {
-    rec(s => s == "A")
   }
 }
 
